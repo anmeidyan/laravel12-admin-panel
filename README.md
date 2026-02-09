@@ -13,6 +13,7 @@
 - Facade Auth (Authentication)
 - Facade Gate (Dynamic Permission Menu Authorize)
 - Service Providers (Dependency Injection)
+- Logging (Admin Activity, Webhook slack for critical error)
 
 ## Getting Started
 

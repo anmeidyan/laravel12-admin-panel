@@ -127,6 +127,26 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'admin' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/admin.log'),
+            'level' => 'info',
+            'days' => 30,
+        ],
+
+        'security' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/security.log'),
+            'level' => 'warning',
+            'days' => 60,
+        ],
+
+        'admin_stack' => [
+            'driver' => 'stack',
+            'channels' => ['admin', 'slack'],
+            'ignore_exceptions' => false,
+        ],
+
     ],
 
 ];
