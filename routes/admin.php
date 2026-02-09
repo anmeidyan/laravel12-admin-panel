@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SlideshowController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 
@@ -18,8 +19,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    // CONTENT MANAGEMENT
-    Route::resource('/slideshow', UserController::class)->names('admin.slideshow');
+    Route::resource('/slideshow', SlideshowController::class)->names('admin.slideshow');
 
     // USER MANAGEMENT
     Route::resource('/user', UserController::class)->names('admin.user.list');
