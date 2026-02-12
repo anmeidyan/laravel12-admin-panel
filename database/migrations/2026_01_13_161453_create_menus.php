@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_view')->default(true);
             $table->integer('order')->default(0);
             $table->foreignId('parent_id')->nullable()->constrained('menus')->cascadeOnDelete();
             $table->string('name');

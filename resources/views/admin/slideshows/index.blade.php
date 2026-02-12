@@ -53,7 +53,13 @@
                                             <td>{!! $slideshow->is_active ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>' !!}</td>
                                             <td>{{ $slideshow->title }}</td>
                                             <td>{{ $slideshow->description }}</td>
-                                            <td>{{ $slideshow->image_path }}</td>
+                                            <td>
+                                                @if($slideshow->image_path)
+                                                <a href="{{ config('app.url').$slideshow->image_path }}" target="_blank">
+                                                    <img src="{{ config('app.url').$slideshow->image_path }}" alt="Image" class="img-fluid" width="100">
+                                                </a>
+                                                @endif
+                                            </td>
                                             <td>{{ $slideshow->created_at }}</td>
                                             <td>
                                                 @can('admin.slideshow.edit')

@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use UniSharp\LaravelFilemanager\Events\ImageWasUploaded;
+use UniSharp\LaravelFilemanager\Events\FileWasUploaded;
+use UniSharp\LaravelFilemanager\Events\FileWasDeleted;
+use UniSharp\LaravelFilemanager\Events\FileWasRenamed;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Menu;
@@ -27,6 +31,7 @@ class AdminServiceProvider extends ServiceProvider
 
         $this->viewMenu();
         $this->permission();
+        $this->filemanager();
     }
 
     protected function viewMenu(): void
@@ -42,6 +47,7 @@ class AdminServiceProvider extends ServiceProvider
                         });
                     }])
                     ->where('is_active', 1)
+                    ->where('is_view', 1)
                     ->whereNull('parent_id')
                     ->WhereHas('permissions', function ($q) use ($permissionIds) {
                         $q->whereIn('permissions.id', $permissionIds);
@@ -60,5 +66,23 @@ class AdminServiceProvider extends ServiceProvider
             
             return $user->role->permissions->contains('slug', $ability);
         });
+    }
+
+    protected function filemanager(): void
+    {
+        $this->app->bind(
+            \UniSharp\LaravelFilemanager\Controllers\DeleteController::class,
+            \App\Http\Controllers\Admin\Filemanager\DeleteController::class
+        );
+
+        $this->app->bind(
+            \UniSharp\LaravelFilemanager\Controllers\RenameController::class,
+            \App\Http\Controllers\Admin\Filemanager\RenameController::class
+        );
+        
+        $this->app->bind(
+            \UniSharp\LaravelFilemanager\Controllers\UploadController::class,
+            \App\Http\Controllers\Admin\Filemanager\UploadController::class
+        );
     }
 }

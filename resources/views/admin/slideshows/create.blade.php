@@ -60,11 +60,20 @@
                             <div class="card-header"></div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Status</label>
-                                    <select class="form-control" name="is_active">
-                                        <option value="1" selected>Active</option>
-                                        <option value="0">Inactive</option>
-                                    </select>
+                                    <label class="d-block">Image</label>
+                                    <a 
+                                        href="javascript:;"
+                                        data-src="{{ route('unisharp.lfm.show') }}?type=image"
+                                        data-input="image_1"
+                                        data-preview="preview_image_1" 
+                                        class="btn btn-info lfm-image">
+                                        <i class="fas fa-image"></i>
+                                    </a>
+                                    <input type="hidden" id="image_1" class="form-control" name="image_path">
+                                    <div id="preview_image_1" class="preview-image"></div>
+                                    @error('image_path')
+                                        <span class="invalid-feedback d-block">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

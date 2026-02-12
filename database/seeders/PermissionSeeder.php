@@ -28,6 +28,11 @@ class PermissionSeeder extends Seeder
             ['name' => 'Create Slideshow', 'slug' => 'admin.slideshow.create'],
             ['name' => 'Edit Slideshow', 'slug' => 'admin.slideshow.edit'],
             ['name' => 'Delete Slideshow', 'slug' => 'admin.slideshow.delete'],
+
+            ['name' => 'View Filemanager', 'slug' => 'admin.filemanager.view'],
+            ['name' => 'Upload Filemanager', 'slug' => 'admin.filemanager.upload'],
+            ['name' => 'Rename Filemanager', 'slug' => 'admin.filemanager.rename'],
+            ['name' => 'Delete Filemanager', 'slug' => 'admin.filemanager.delete'],
         ]);
     }
 }

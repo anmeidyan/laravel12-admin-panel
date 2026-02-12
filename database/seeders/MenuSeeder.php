@@ -15,6 +15,7 @@ class MenuSeeder extends Seeder
     {
         $userManagement = Menu::create([
             'is_active' => true,
+            'is_view' => true,
             'order' => 2,
             'parent_id' => null,
             'name' => 'User Management',
@@ -24,6 +25,7 @@ class MenuSeeder extends Seeder
 
         $userList = Menu::create([
             'is_active' => true,
+            'is_view' => true,
             'order' => 1,
             'parent_id' => 1,
             'name' => 'List',
@@ -33,6 +35,7 @@ class MenuSeeder extends Seeder
 
         $userRole = Menu::create([
             'is_active' => true,
+            'is_view' => true,
             'order' => 2,
             'parent_id' => 1,
             'name' => 'Role',
@@ -42,6 +45,7 @@ class MenuSeeder extends Seeder
 
         $slideshow = Menu::create([
             'is_active' => true,
+            'is_view' => true,
             'order' => 1,
             'parent_id' => null,
             'name' => 'Slideshow',
@@ -49,9 +53,20 @@ class MenuSeeder extends Seeder
             'icon' => 'fa-images',
         ]);
 
+        $noView = Menu::create([
+            'is_active' => true,
+            'is_view' => false,
+            'order' => 99,
+            'parent_id' => null,
+            'name' => 'No View Menus',
+            'route' => 'admin.user.*',
+            'icon' => null,
+        ]);
+
         $userManagement->permissions()->sync([1]);
         $userList->permissions()->sync([2,3,4,5]);
         $userRole->permissions()->sync([6,7,8,9]);
         $slideshow->permissions()->sync([10,11,12,13]);
+        $noView->permissions()->sync([14,15,16,17]);
     }
 }

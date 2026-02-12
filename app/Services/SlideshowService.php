@@ -15,6 +15,7 @@ class SlideshowService implements SlideshowServiceInterface
     public function create(array $data): Slideshow
     {
         try {
+            $data['image_path'] = \Str::remove(config('app.url'), $data['image_path']);
             $data['created_by'] = auth()->id();
 
             $slideshow = Slideshow::create($data);
@@ -39,6 +40,7 @@ class SlideshowService implements SlideshowServiceInterface
     public function update(int $id, array $data): Slideshow
     {
         try {
+            $data['image_path'] = \Str::remove(config('app.url'), $data['image_path']);
             $data['updated_by'] = auth()->id();
         
             $slideshow = Slideshow::findOrFail($id);

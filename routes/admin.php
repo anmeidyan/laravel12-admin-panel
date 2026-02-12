@@ -25,3 +25,14 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('/user', UserController::class)->names('admin.user.list');
     Route::resource('/role', RoleController::class)->names('admin.user.role');
 });
+
+Route::group([
+    'prefix' => '/filemanager',
+    'middleware' => ['admin', 'permission:admin.filemanager.view']
+    ], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+Route::post('filemanager/upload',[\App\Http\Controllers\Admin\Filemanager\UploadController::class, 'upload']);
+Route::post('filemanager/delete',[\App\Http\Controllers\Admin\Filemanager\DeleteController::class, 'getDelete']);
+Route::post('filemanager/rename',[\App\Http\Controllers\Admin\Filemanager\RenameController::class, 'getRename']);
