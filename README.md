@@ -14,6 +14,7 @@
 - Facade Gate (Dynamic Permission Menu Authorize)
 - Service Providers (Dependency Injection)
 - Logging (Admin Activity, Webhook slack for critical error)
+- Filemanager (UniSharp + permission/role)
 
 ## Getting Started
 
